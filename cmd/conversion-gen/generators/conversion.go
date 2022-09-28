@@ -656,9 +656,6 @@ func (g *genConversion) Init(c *generator.Context, w io.Writer) error {
 		}
 	}
 	sw := generator.NewSnippetWriter(w, c, "$", "$")
-	sw.Do("func init() {\n", nil)
-	sw.Do("localSchemeBuilder.Register(RegisterConversions)\n", nil)
-	sw.Do("}\n", nil)
 
 	scheme := c.Universe.Type(types.Name{Package: runtimePackagePath, Name: "Scheme"})
 	schemePtr := &types.Type{
