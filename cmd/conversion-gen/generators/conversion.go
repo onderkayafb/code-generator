@@ -1211,10 +1211,10 @@ func (g *genConversion) setZeroValue(outMember types.Member, sw *generator.Snipp
 }
 
 func isDirectlyAssignable(inType, outType *types.Type) bool {
-	// TODO: This should maybe check for actual assignability between the two
-	// types, rather than superficial traits that happen to indicate it is
-	// assignable in the ways we currently use this code.
-	return inType.IsAssignable() && (inType.IsPrimitive() || isSamePackage(inType, outType))
+    // TODO: This should maybe check for actual assignability between the two
+    // types, rather than superficial traits that happen to indicate it is
+    // assignable in the ways we currently use this code.
+    return inType.IsAssignable() && ((inType.IsPrimitive() && string(inType.Kind) != "Alias" && outType.IsPrimitive()) || isSamePackage(inType, outType))
 }
 
 func isSamePackage(inType, outType *types.Type) bool {
